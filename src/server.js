@@ -10,8 +10,17 @@ const routes = require("./routes");
 (async () => {
 
     const app = express();
+    const cors = require("cors");
 
-    app.use(cors());
+    const corsOptions = {
+        origin: ["https://gp7.netlify.app", "http://localhost:5173"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true
+    };
+    
+    app.use(cors(corsOptions));
+    
     app.use(express.json());
     app.use(routes);
 
